@@ -1,4 +1,3 @@
-
 set -e
 cd /github/home
 echo Install dependencies.
