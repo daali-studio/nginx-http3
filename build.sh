@@ -26,15 +26,6 @@ curl -sL https://raw.githubusercontent.com/kn007/patch/master/Enable_BoringSSL_O
 echo Fetch boringssl source code.
 mkdir debian/modules
 cd debian/modules
-wget https://ftp.openbsd.org/pub/OpenBSD/LibreSSL/libressl-3.8.2.tar.gz
-tar -vxf libressl-3.8.2.tar.gz
-cd libressl-3.8.2/
-mkdir build
-cd build
-cmake ../ > /dev/null 2>&1
-make -j 8 > /dev/null 2>&1
-echo Fetch additional dependencies.
-cd ../..
 git clone --depth 1 --recursive https://github.com/google/ngx_brotli > /dev/null 2>&1
 mkdir ngx_brotli/deps/brotli/out
 cd ngx_brotli/deps/brotli/out
@@ -48,7 +39,6 @@ cd ..
 sed -i 's|NGINX Packaging <nginx-packaging@f5.com>|daali <daali@k-45.ru>|g' control
 sed -i 's|CFLAGS=""|CFLAGS="-Wno-ignored-qualifiers"|g' rules
 sed -i 's|--sbin-path=/usr/sbin/nginx|--sbin-path=/usr/sbin/nginx --add-module=$(CURDIR)/debian/modules/ngx_brotli --add-module=$(CURDIR)/debian/modules/headers-more-nginx-module|g' rules
-sed -i 's|--with-cc-opt="$(CFLAGS)" --with-ld-opt="$(LDFLAGS)"|--with-cc-opt="-I../modules/libressl-3.8.2/include $(CFLAGS)" --with-ld-opt="-L../modules/libressl-3.8.2/build/ssl -L../modules/libressl-3.8.2/build/crypto $(LDFLAGS)"|g' rules
 sed -i 's|--http-scgi-temp-path=/var/cache/nginx/scgi_temp --user=nginx --group=nginx|--user=www-data --group=www-data|g' rules
 sed -i 's|--with-compat||g' rules
 sed -i 's|--with-debug||g' rules
