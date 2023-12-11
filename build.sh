@@ -65,7 +65,7 @@ sed -i 's|--with-http_random_index_module||g' rules
 sed -i 's|--with-http_secure_link_module||g' rules
 sed -i 's|--with-http_slice_module||g' rules
 sed -i 's|--with-http_stub_status_module||g' rules
-sed -i 's|--with-mail --with-mail_ssl_module --with-stream --with-stream_realip_module --with-stream_ssl_module --with-stream_ssl_preread_module| --with-pcre --with-pcre-jit --without-select_module --without-poll_module --without-http_memcached_module --without-http_mirror_module --without-http_split_clients_module --without-http_scgi_module --without-http_ssi_module --without-http_upstream_hash_module --without-http_upstream_ip_hash_module --without-http_upstream_keepalive_module --without-http_upstream_least_conn_module --without-http_upstream_random_module --without-http_upstream_zone_module|g' rules
+sed -i 's|--with-mail --with-mail_ssl_module --with-stream --with-stream_realip_module --with-stream_ssl_module --with-stream_ssl_preread_module| --with-pcre --with-pcre-jit --without-select_module --without-poll_module --without-http_memcached_module --without-http_mirror_module --without-http_split_clients_module --without-http_scgi_module --without-http_upstream_hash_module --without-http_upstream_ip_hash_module --without-http_upstream_keepalive_module --without-http_upstream_least_conn_module --without-http_upstream_random_module --without-http_upstream_zone_module|g' rules
 cd ..
 dpkg-buildpackage -b > /dev/null 2>&1
 cd ..
